@@ -19,6 +19,14 @@ class Group(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=500)
     members = models.ManyToManyField(User, through="GroupMembership")
+    STATUS_CHOICES = (
+        ("Not Started", "Not Started"),
+        ("In Progress", "In Progress"),
+        ("Completed", "Completed"),
+    )
+    status = models.CharField(
+        max_length=20, choices=STATUS_CHOICES, default="Not Started"
+    )
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
 
     def __str__(self):
