@@ -1,0 +1,4 @@
+tasksDB.sqlite3
+venv
+__pycache__
+models.py
