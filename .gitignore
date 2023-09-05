@@ -2,4 +2,3 @@ tasksDB.sqlite3
 venv
 __pycache__
 tasksDiagram.mdj
-signals.py
