@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 class Project(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=500)
-    start_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField(auto_now_add=True)
+    start_date = models.DateTimeField(auto_now_add=False)
+    end_date = models.DateTimeField(auto_now_add=False)
     status = models.BooleanField(default=False)
     project_manager = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -44,11 +44,11 @@ class GroupMembership(models.Model):
 class Task(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=500)
-    start_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField(auto_now_add=True)
+    start_date = models.DateTimeField(auto_now_add=False)
+    end_date = models.DateTimeField(auto_now_add=False)
     status = models.BooleanField(default=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.name} - {self.group}"
