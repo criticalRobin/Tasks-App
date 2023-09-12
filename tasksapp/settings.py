@@ -81,7 +81,7 @@ WSGI_APPLICATION = "tasksapp.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "tasksDB.sqlite3",
+        "NAME": BASE_DIR / "tasksappdb.sqlite3",
     }
 }
 
