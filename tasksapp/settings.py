@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 
+AUTH_USER_MODEL = "user.MyUser"
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -81,7 +83,7 @@ WSGI_APPLICATION = "tasksapp.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "tasksappdb.sqlite3",
+        "NAME": BASE_DIR / "tasksApp.sqlite3",
     }
 }
 
