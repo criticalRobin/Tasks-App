@@ -45,3 +45,30 @@ class UserForm(forms.ModelForm):
             "password_confirm": "Confirm Password",
             "image": "Image",
         }
+
+
+class UserUpdateForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for form in self.visible_fields():
+            form.field.widget.attrs["class"] = "form-control"
+            form.field.widget.attrs["autocomplete"] = "off"
+            form.field.widget.attrs["placeholder"] = (
+                form.label[0].capitalize() + form.label[1:].lower()
+            )
+        self.fields["username"].widget.attrs["autofocus"] = True
+
+    class Meta:
+        model = MyUser
+        fields = [
+            "username",
+            "first_name",
+            "last_name",
+            "image",
+        ]
+        labels = {
+            "username": "Username",
+            "first_name": "First Name",
+            "last_name": "Last Name",
+            "image": "Image",
+        }
