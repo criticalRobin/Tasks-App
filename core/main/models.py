@@ -1,11 +1,16 @@
 from django.db import models
 from core.user.models import MyUser as User
+from core.main.validations import no_special_characters
 
 
 # Create your models here.
 class Project(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField(max_length=500)
+    name = models.CharField(
+        max_length=100, blank=False, validators=[no_special_characters]
+    )
+    description = models.TextField(
+        max_length=500, blank=True, validators=[no_special_characters]
+    )
     start_date = models.DateTimeField(auto_now_add=False)
     end_date = models.DateTimeField(auto_now_add=False)
     status = models.BooleanField(default=False)
@@ -16,8 +21,12 @@ class Project(models.Model):
 
 
 class Group(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField(max_length=500)
+    name = models.CharField(
+        max_length=100, blank=False, validators=[no_special_characters]
+    )
+    description = models.TextField(
+        max_length=500, blank=True, validators=[no_special_characters]
+    )
     members = models.ManyToManyField(User, through="GroupMembership")
     STATUS_CHOICES = (
         ("Not Started", "Not Started"),
@@ -42,8 +51,12 @@ class GroupMembership(models.Model):
 
 
 class Task(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField(max_length=500)
+    name = models.CharField(
+        max_length=100, blank=False, validators=[no_special_characters]
+    )
+    description = models.TextField(
+        max_length=500, blank=False, validators=[no_special_characters]
+    )
     start_date = models.DateTimeField(auto_now_add=False)
     end_date = models.DateTimeField(auto_now_add=False)
     status = models.BooleanField(default=False)

@@ -1,0 +1,13 @@
+{% extends 'home.html' %} {% block body %}
+  <body class="hold-transition sidebar-mini layout-fixed">
+    <!-- NavBar -->
+    {% include 'navbar.html' %}
+    <div class="container mt-3">
+      {% block content %}
+
+      {% endblock %}
+    </div>
+    <!-- Footer -->
+    {% include 'footer.html' %}
+  </body>
+{% endblock %}
