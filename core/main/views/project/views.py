@@ -13,17 +13,12 @@ class ProjectListView(ListView):
     model = Project
     template_name = "project/list.html"
 
-    @method_decorator(login_required(login_url=reverse_lazy("login:login_view")))
-    @method_decorator(csrf_exempt)
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(self, request, *args, **kwargs)
-
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Projects List"
         context["list_url"] = reverse_lazy("main:project_list")
         context["entity"] = "Projects"
-        return super().get_context_data(**kwargs)
+        return context
 
 
 class ProjectCreateView(CreateView):
@@ -32,9 +27,9 @@ class ProjectCreateView(CreateView):
     form_class = ProjectForm
     success_url = reverse_lazy("main:project_list")
 
-    @method_decorator(login_required(login_url=reverse_lazy("login:login_view")))
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(self, request, *args, **kwargs)
+    # @method_decorator(csrf_exempt)
+    # def dispatch(self, request, *args, **kwargs):
+    #     return super().dispatch(self, request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
@@ -47,12 +42,12 @@ class ProjectCreateView(CreateView):
         context["form"] = form
         return render(request, self.template_name, context)
 
-    def get_context_date(self, *args, **kwargs):
+    def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Create Project"
         context["list_url"] = reverse_lazy("main:project_list")
         context["entity"] = "Projects"
-        return super().get_context_data(**kwargs)
+        return context
 
 
 class ProjectUpdateView(UpdateView):
@@ -61,17 +56,13 @@ class ProjectUpdateView(UpdateView):
     template_name = "project/create.html"
     success_url = reverse_lazy("main:project_list")
 
-    @method_decorator(login_required(login_url=reverse_lazy("login:login_view")))
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(self, request, *args, **kwargs)
-
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Project Update"
         context["list_url"] = reverse_lazy("main:project_list")
         context["entity"] = "Projects"
         context["form"].fields["project_manager"].widget.attrs["readonly"] = True
-        return super().get_context_data(**kwargs)
+        return context
 
 
 class ProjectDeleteView(DeleteView):
@@ -79,13 +70,9 @@ class ProjectDeleteView(DeleteView):
     template_name = "project/delete.html"
     success_url = reverse_lazy("main:project_list")
 
-    @method_decorator(login_required(login_url=reverse_lazy("login:login_view")))
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(self, request, *args, **kwargs)
-
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Project Delete"
         context["list_url"] = reverse_lazy("main:project_list")
         context["entity"] = "Projects"
-        return super().get_context_data(**kwargs)
+        return context

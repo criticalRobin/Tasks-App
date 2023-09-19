@@ -13,17 +13,12 @@ class GroupListView(ListView):
     model = Group
     template_name = "group/list.html"
 
-    @method_decorator(login_required(login_url=reverse_lazy("login:login_view")))
-    @method_decorator(csrf_exempt)
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(self, request, *args, **kwargs)
-
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Groups List"
         context["list_url"] = reverse_lazy("main:group_list")
         context["entity"] = "Groups"
-        return super().get_context_data(**kwargs)
+        return context
 
 
 class GroupCreateView(CreateView):
@@ -31,10 +26,6 @@ class GroupCreateView(CreateView):
     template_name = "group/create.html"
     form_class = GroupForm
     success_url = reverse_lazy("main:group_list")
-
-    @method_decorator(login_required(login_url=reverse_lazy("login:login_view")))
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(self, request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
@@ -47,12 +38,12 @@ class GroupCreateView(CreateView):
         context["form"] = form
         return render(request, self.template_name, context)
 
-    def get_context_date(self, *args, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Create Group"
         context["list_url"] = reverse_lazy("main:group_list")
         context["entity"] = "Groups"
-        return super().get_context_data(**kwargs)
+        return context
 
 
 class GroupUpdateView(UpdateView):
@@ -61,16 +52,12 @@ class GroupUpdateView(UpdateView):
     template_name = "group/create.html"
     success_url = reverse_lazy("main:group_list")
 
-    @method_decorator(login_required(login_url=reverse_lazy("login:login_view")))
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(self, request, *args, **kwargs)
-
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Group Update"
         context["list_url"] = reverse_lazy("main:group_list")
         context["entity"] = "Groups"
-        return super().get_context_data(**kwargs)
+        return context
 
 
 class GroupDeleteView(DeleteView):
@@ -78,13 +65,9 @@ class GroupDeleteView(DeleteView):
     template_name = "group/delete.html"
     success_url = reverse_lazy("main:group_list")
 
-    @method_decorator(login_required(login_url=reverse_lazy("login:login_view")))
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(self, request, *args, **kwargs)
-
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Group Delete"
         context["list_url"] = reverse_lazy("main:group_list")
         context["entity"] = "Groups"
-        return super().get_context_data(**kwargs)
+        return context

@@ -27,7 +27,7 @@ class UserListView(ListView):
         context["title"] = "Users List"
         context["list_url"] = reverse_lazy("user:user_list")
         context["entity"] = "Users"
-        return super().get_context_data(**kwargs)
+        return context
 
 
 class UserCreateView(CreateView):
@@ -72,7 +72,7 @@ class UserCreateView(CreateView):
         context["title"] = "Create User"
         context["list_url"] = reverse_lazy("user:user_list")
         context["entity"] = "Users"
-        return super().get_context_data(**kwargs)
+        return context
 
 
 class UserUpdateView(UpdateView):
@@ -97,7 +97,7 @@ class UserUpdateView(UpdateView):
         context["title"] = "Update User"
         context["list_url"] = reverse_lazy("user:user_list")
         context["entity"] = "Users"
-        return super().get_context_data(**kwargs)
+        return context
 
 
 class UserDeleteView(DeleteView):
@@ -110,4 +110,4 @@ class UserDeleteView(DeleteView):
         context["title"] = "Delete User"
         context["list_url"] = reverse_lazy("user:user_list")
         context["entity"] = "Users"
-        return super().get_context_data(**kwargs)
+        return context

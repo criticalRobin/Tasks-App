@@ -1,0 +1,9 @@
+.my-card {
+  color: #363b4e;
+  background-color: #c4bbf0;
+}
+
+.container {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}

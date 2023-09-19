@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/delete.css' %}" />
+{% endblock %}
+{% block content %}
+  <div class="d-flex justify-content-center main">
+    <div class="position-absolute bottom-50 card w-25">
+      <div class="card-header d-flex justify-content-center">
+        <h4 class="card-title">
+          <i class="fas fa-trash"></i>
+          {{ title }}
+        </h4>
+      </div>
+      <div class="text-center">Are you sure to delete?</div>
+      <hr />
+      <div class="d-inline-flex justify-content-center gap-3">
+        <form method="post">
+          {% csrf_token %}
+          <button class="btn my-btn" type="submit"><i fas fa-trash></i> Delete</button>
+        </form>
+        <a href="#" class="btn my-btn"><i class="fas fa-cancel"></i> Cancel</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

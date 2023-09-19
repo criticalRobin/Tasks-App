@@ -1,0 +1,13 @@
+.main {
+  background-color: white;
+}
+
+.my-btn {
+  background-color: #363b4e;
+  color: #c4bbf0;
+}
+
+.my-btn:hover {
+  background-color: white;
+  color: #363b4e;
+}

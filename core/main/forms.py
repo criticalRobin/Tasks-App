@@ -17,13 +17,12 @@ class ProjectForm(forms.ModelForm):
 
     class Meta:
         model = Project
-        fields = "__all__"
+        fields = ["name", "description", "start_date", "end_date", "project_manager"]
         labels = {
             "name": "Project Name",
             "description": "Project Description",
             "start_date": "Project Start Date",
             "end_date": "Project End Date",
-            "status": "Project Status",
             "project_manager": "Project Manager",
         }
 

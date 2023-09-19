@@ -2,12 +2,12 @@
   <body class="hold-transition sidebar-mini layout-fixed">
     <!-- NavBar -->
     {% include 'navbar.html' %}
-    <div class="container mt-3">
+    <div class="container mt-3 mb-3">
       {% block content %}
 
       {% endblock %}
     </div>
     <!-- Footer -->
-    {% include 'footer.html' %}
+    {% comment %} {% include 'footer.html' %} {% endcomment %}
   </body>
 {% endblock %}

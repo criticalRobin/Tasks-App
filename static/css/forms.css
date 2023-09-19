@@ -1,0 +1,22 @@
+.my-form {
+  color: #363b4e;
+  border: 2px solid white;
+  border-radius: 8px;
+  padding: 15px;
+  background: #c4bbf0;
+}
+
+.my-form label {
+  color: #363b4e;
+  font-weight: bold;
+}
+
+.my-btn {
+  background-color: #363b4e;
+  color: #c4bbf0;
+}
+
+.my-btn:hover {
+  background-color: white;
+  color: #363b4e;
+}
