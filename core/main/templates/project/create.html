@@ -1,1 +1,8 @@
-{% extends "create.html" %}
+{% extends 'create.html' %}
+{% load static %}
+{% block name %}
+  <h4>User: {{ user.username }}</h4>
+{% endblock %}
+{% block descp %}
+  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam perferendis laborum veritatis minima eaque placeat!</p>
+{% endblock %}

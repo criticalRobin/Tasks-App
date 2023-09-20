@@ -43,8 +43,8 @@ class Group(models.Model):
 
 
 class GroupMembership(models.Model):
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return f"{self.user} - {self.group}"
@@ -60,8 +60,8 @@ class Task(models.Model):
     start_date = models.DateTimeField(auto_now_add=False)
     end_date = models.DateTimeField(auto_now_add=False)
     status = models.BooleanField(default=False)
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return f"{self.name} - {self.group}"

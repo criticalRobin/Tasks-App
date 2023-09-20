@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% for p in object_list %}
+    <div class="container text-center mt-4 mb-3">
+      <div class="mx-auto">
+        <div class="row mx-auto">
+          <div class="col-5 py-3 border bg-light mx-auto">
+            {% comment %}CARD{% endcomment %}
+            <div class="card mx-auto" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">{{ book }}</h5>
+                <p class="card-text">Proyecto con PK: {{ p.pk }}</p>
+                <a href="{% url 'main:group_create' p.pk %}" class="btn btn-warning w-100 mb-1">Edit</a>
+                <a href="#" class="btn btn-danger w-100">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}

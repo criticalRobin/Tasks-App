@@ -27,10 +27,6 @@ class ProjectCreateView(CreateView):
     form_class = ProjectForm
     success_url = reverse_lazy("main:project_list")
 
-    # @method_decorator(csrf_exempt)
-    # def dispatch(self, request, *args, **kwargs):
-    #     return super().dispatch(self, request, *args, **kwargs)
-
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
 

@@ -10,8 +10,12 @@
         <div class="card my-card" style="width: 18rem;">
           <img src="{% static 'img/noviaaaa.jpg' %}" class="card-img-top" alt="..." />
           <div class="card-body">
-            <h4>User: {{ user.username }}</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam perferendis laborum veritatis minima eaque placeat!</p>
+            {% block name %}
+
+            {% endblock %}
+            {% block descp %}
+
+            {% endblock %}
           </div>
         </div>
       </div>

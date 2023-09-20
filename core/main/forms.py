@@ -79,13 +79,11 @@ class TaskForm(forms.ModelForm):
 
     class Meta:
         model = Task
-        fields = "__all__"
+        fields = ["name", "description", "start_date", "end_date", "user"]
         labels = {
             "name": "Task Name",
             "description": "Task Description",
             "start_date": "Task Start Date",
             "end_date": "Task End Date",
-            "status": "Task Status",
-            "group": "Group",
             "user": "User",
         }

@@ -18,13 +18,15 @@ urlpatterns = [
     ),
     # GROUP URLS
     path("group/list/", GroupListView.as_view(), name="group_list"),
-    path("group/create/", GroupCreateView.as_view(), name="group_create"),
+    path(
+        "project/<int:pk>/group/create/", GroupCreateView.as_view(), name="group_create"
+    ),
     path("group/update/<int:pk>/", GroupUpdateView.as_view(), name="group_update"),
     path("group/delete/<int:pk>/", GroupDeleteView.as_view(), name="group_delete"),
     # GROUP MEMBERSHIP URLS
     # TASK URLS
     path("task/list/", TaskListView.as_view(), name="task_list"),
-    path("task/create/", TaskCreateView.as_view(), name="task_create"),
+    path("group/<int:pk>/task/create/", TaskCreateView.as_view(), name="task_create"),
     path("task/update/<int:pk>/", TaskUpdateView.as_view(), name="task_update"),
     path("task/delete/<int:pk>/", TaskDeleteView.as_view(), name="task_delete"),
 ]

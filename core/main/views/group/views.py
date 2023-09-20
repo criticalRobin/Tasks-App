@@ -1,11 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from core.main.models import Group
+from core.main.models import Group, Project
 from core.main.forms import GroupForm
 
 
@@ -23,16 +23,21 @@ class GroupListView(ListView):
 
 class GroupCreateView(CreateView):
     model = Group
-    template_name = "group/create.html"
+    template_name = "create.html"
     form_class = GroupForm
     success_url = reverse_lazy("main:group_list")
 
     def post(self, request, *args, **kwargs):
+        project_id = kwargs["pk"]
+        project = get_object_or_404(Project, pk=project_id)
         form = self.form_class(request.POST)
 
         if form.is_valid():
+            form = form.save(commit=False)
+            form.project = project
             form.save()
             return HttpResponseRedirect(self.success_url)
+        print("Erroooooooor")
         self.object = None
         context = self.get_context_data(**kwargs)
         context["form"] = form
