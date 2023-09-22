@@ -18,6 +18,10 @@ class ProjectListView(ListView):
         context["title"] = "Projects List"
         context["list_url"] = reverse_lazy("main:project_list")
         context["entity"] = "Projects"
+        context["user"] = self.request.user
+        context["user_projects"] = Project.objects.filter(
+            project_manager=context["user"]
+        )
         return context
 
 

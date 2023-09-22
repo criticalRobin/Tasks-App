@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="col-12">
+    <h3 class="text-card" style="font-weight: bold; color: #272343;">{{ entity }}!</h3>
+    <p class="text-card" style="font-size: 17px; color: #272343; margin-top: -10px;">Here are your {{ entity }}</p>
+  </div>
+  <div class="d-flex align-items-center justify-content-center">
+    <div class="left col-4">
+      {% block left_content %}
+
+      {% endblock %}
+    </div>
+    <div class="right col-8 col-md-8 col-sm-4">
+      {% block right_content %}
+
+      {% endblock %}
+    </div>
+  </div>
+  {% block js %}
+
+  {% endblock %}
+{% endblock %}

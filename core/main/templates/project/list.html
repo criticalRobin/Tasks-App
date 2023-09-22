@@ -1,23 +1,95 @@
-{% extends 'base.html' %}
-
-{% block content %}
-  {% for p in object_list %}
-    <div class="container text-center mt-4 mb-3">
-      <div class="mx-auto">
-        <div class="row mx-auto">
-          <div class="col-5 py-3 border bg-light mx-auto">
-            {% comment %}CARD{% endcomment %}
-            <div class="card mx-auto" style="width: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title">{{ book }}</h5>
-                <p class="card-text">Proyecto con PK: {{ p.pk }}</p>
-                <a href="{% url 'main:group_create' p.pk %}" class="btn btn-warning w-100 mb-1">Edit</a>
-                <a href="#" class="btn btn-danger w-100">Delete</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+{% extends 'list.html' %}
+{% load static %}
+{% block left_content %}
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{% static 'img/noviaaaa.jpg' %}" alt="Card image cap" />
+    <div class="card-body text-center" style="color: #272343;">
+      <h5 class="card-title">User: @{{ user.username }}</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="{% url 'main:project_create' %}" class="btn" style="background-color: #ff9a3c; color: white;">Add a new Project!</a>
     </div>
-  {% endfor %}
+  </div>
+{% endblock %}
+{% block right_content %}
+  <div class="top text-center" style="height: 240px;">
+    <table class="table" style="border: 3px solid #272343; background-color: white;">
+      <thead>
+        <tr>
+          <th scope="col">
+            <i class="fa-solid fa-list-ul"></i> Not Finished Projects
+          </th>
+          <th scope="col">
+            <i class="fa-solid fa-person-circle-plus"></i> New Group
+          </th>
+          <th scope="col">
+            <i class="fa-regular fa-pen-to-square"></i> Update
+          </th>
+          <th scope="col">
+            <i class="fa-regular fa-trash-can"></i> Delete
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for up in user_projects %}
+          {% if up.status == False %}
+            <tr>
+              <th scope="row">
+                <i class="i-project fa-solid fa-diagram-project"></i> {{ up.name }}
+              </th>
+              <td>
+                <a class="btn" href="{% url 'main:group_create' up.pk %}" style="border: 2px solid #7dd87d;"><i class="fa-solid fa-person-circle-plus" style="color: #7dd87d;"></i></a>
+              </td>
+              <td>
+                <a class="btn" href="#" style="border: 2px solid #ffc93c;"><i class="fa-regular fa-pen-to-square" style="color: #ffc93c;"></i></a>
+              </td>
+              <td>
+                <a class="btn" href="#" style="border: 2px solid #ff4057;"><i class="fa-regular fa-trash-can" style="color: #ff4057;"></i></a>
+              </td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="bottom text-center" style="height: 240px;">
+    <table class="table" style="border: 3px solid #ff9a3c; background-color: white;">
+      <thead>
+        <tr>
+          <th scope="col">
+            <i class="fa-solid fa-list-ul"></i> Finished Projects
+          </th>
+          <th scope="col">
+            <i class="fa-solid fa-user-check"></i> Project Manager
+          </th>
+          <th scope="col">
+            <i class="fa-solid fa-circle-check"></i> Checked
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for up in user_projects %}
+          {% if up.status %}
+            <tr>
+              <th scope="row">
+                <i class="i-project fa-solid fa-diagram-project"></i> {{ up.name }}
+              </th>
+              <td style="color: #272343;">{{ up.project_manager }}</td>
+              <td style="color: #7dd87d;">
+                <i class="fa-solid fa-circle-check"></i>
+              </td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
+{% block js %}
+  <script>
+    const ths = document.querySelectorAll('th')
+    
+    ths.forEach((th) => {
+      th.style.color = '#272343'
+    })
+  </script>
 {% endblock %}

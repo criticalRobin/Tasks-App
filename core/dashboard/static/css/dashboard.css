@@ -1,0 +1,22 @@
+.table {
+  color: #272343;
+}
+
+.my-btn {
+  background-color: #272343;
+  color: white;
+  position: relative;
+  bottom: 38px;
+  width: 100%;
+  border-radius: 25px;
+}
+
+.my-btn:hover {
+  background-color: #ff9a3c;
+  color: white;
+  font-weight: bold;
+}
+
+.i-project {
+  color: #ff9a3c;
+}

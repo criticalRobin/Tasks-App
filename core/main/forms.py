@@ -53,13 +53,12 @@ class GroupMembershipForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for form in self.visible_fields():
             form.field.widget.attrs["class"] = "form-control"
-        self.fields["group"].widget.attrs["autofocus"] = True
+        self.fields["user"].widget.attrs["autofocus"] = True
 
     class Meta:
         model = GroupMembership
-        fields = "__all__"
+        fields = ["user"]
         labels = {
-            "group": "Group",
             "user": "User",
         }
 

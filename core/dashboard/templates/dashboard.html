@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/calendar.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+{% endblock %}
+{% block content %}
+  <div class="greeting">
+    <h3 class="text-card" style="font-weight: bold; color: #272343;">Welcome, {{ user.first_name }}!</h3>
+    <p class="text-card" style="font-size: 17px; color: #272343; margin-top: -10px;">Here is your agenda for today</p>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="left d-flex flex-column align-content-center col-12 col-md-4 col-sm-4">
+        <div class="top p-2">
+          <div class="dark position-relative p-0 text-left">
+            <div class="calendar d-none d-sm-block d-md-block position-relative p-0 text-lef">
+              <div class="calendar-header">
+                <span class="month-picker" id="month-picker">February</span>
+                <div class="year-picker">
+                  <span class="year-change" id="prev-year"><pre><</pre></span>
+                  <span id="year">2023</span>
+                  <span class="year-change" id="next-year"><pre>></pre></span>
+                </div>
+              </div>
+              <div class="calendar-body">
+                <div class="calendar-week-day">
+                  <div>Sun</div>
+                  <div>Mon</div>
+                  <div>Tue</div>
+                  <div>Wed</div>
+                  <div>Thu</div>
+                  <div>Fri</div>
+                  <div>Sat</div>
+                </div>
+                <div class="calendar-days"></div>
+              </div>
+              <div class="month-list"></div>
+            </div>
+            <script src="{% static 'js/calendar.js' %}"></script>
+          </div>
+        </div>
+        <div class="container d-flex justify-content-center bottom p-2 mt-3 mb-2" style="border-radius: 25px; height: 230px; background-color: white;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">
+                  <i class="fa-solid fa-list-ul"></i> Current Projects
+                </th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for p in projects_name %}
+                <tr>
+                  <td>
+                    <i class="i-project fa-solid fa-diagram-project"></i> {{ p }}
+                  </td>
+                  <td style="color: #7dd87d;">
+                    <i class="fas fa-clock"></i>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="right col-12 col-md-8 col-sm-8">
+        <div class="top p-2 mt-2 mb-2" style="border-radius: 25px; height: 270px; background-color: white;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">
+                  <i class="fas fa-pencil"></i> Urgent Tasks
+                </th>
+                <th scope="col">
+                  <i class="fa-solid fa-users-rays"></i> Group
+                </th>
+                <th scope="col">
+                  <i class="fa-solid fa-calendar-xmark"></i> End Date
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for t in today_tasks %}
+                <tr>
+                  <td>
+                    <a href="#"><i class="fas fa-circle" style="color: #ff007b;"></i></a> {{ t.name }}
+                  </td>
+                  <td>
+                    <a href="#"></a> {{ t.group.name }}
+                  </td>
+                  <td style="color: #ff007b;">
+                    <i class="fas fa-fire"></i> Today
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="bottom p-2 ps-0 pe-0 mt-2 mb-0 d-md-inline-flex flex-sm-row w-100 overflow-hidden">
+          <div class="left col-4 d-none d-sm-block" style="border-radius: 25px; height: 225px; margin-right: 30px;">
+            <div class="img-container" style="width: 18rem; background-color: #f4f3f3; border-color: #f4f3f3;">
+              <img src="{% static 'img/noviaaaa.jpg' %}" class="card-img-top img-fluid" alt="..." style="height: 230px; border-radius: 25px;" />
+              <a href="#" class="my-btn btn">@{{ user.username }}</a>
+            </div>
+          </div>
+          <div class="right col-8" style="border-radius: 25px; height: 230px; background-color: white; width: 530px;">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">
+                    <i class="fa-solid fa-people-group"></i> Your Groups
+                  </th>
+                  <th scope="col">
+                    <i class="fa-solid fa-bars-progress"></i> Project
+                  </th>
+                  <th scope="col">
+                    <i class="fa-solid fa-clipboard-question"></i> Status
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for g in groups %}
+                  <tr>
+                    <td>
+                      <i class="fa-solid fa-users-rectangle" style="color: #afc5ff;"></i> {{ g.name }}
+                    </td>
+                    <td>{{ g.project.name }}</td>
+                    {% if g.status == 'Not Started' %}
+                      <td style="color: red;">{{ g.status }}</td>
+                    {% elif g.status == 'In Progress' %}
+                      <td style="color: #afc5ff;">{{ g.status }}</td>
+                    {% else %}
+                      <td style="color: green;">{{ g.status }}</td>
+                    {% endif %}
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

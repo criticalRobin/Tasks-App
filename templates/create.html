@@ -1,10 +1,10 @@
-{% extends 'card.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block head %}
   <link rel="stylesheet" href="{% static 'css/card.css' %}" />
   <link rel="stylesheet" href="{% static 'css/forms.css' %}" />
 {% endblock %}
-{% block views %}
+{% block content %}
   <form method="post" action="." enctype="multipart/form-data">
     <div class="card card-default my-form">
       <div class="card-header">

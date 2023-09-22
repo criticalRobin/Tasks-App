@@ -24,6 +24,21 @@ urlpatterns = [
     path("group/update/<int:pk>/", GroupUpdateView.as_view(), name="group_update"),
     path("group/delete/<int:pk>/", GroupDeleteView.as_view(), name="group_delete"),
     # GROUP MEMBERSHIP URLS
+    path(
+        "group_membership/list/",
+        GroupMembershipListView.as_view(),
+        name="group_membership_list",
+    ),
+    path(
+        "group/<int:pk>/group_membership/create/",
+        GroupMembershipCreateView.as_view(),
+        name="group_membership_create",
+    ),
+    path(
+        "group_membership/delete/<int:pk>/",
+        GroupMembershipDeleteView.as_view(),
+        name="group_membership_delete",
+    ),
     # TASK URLS
     path("task/list/", TaskListView.as_view(), name="task_list"),
     path("group/<int:pk>/task/create/", TaskCreateView.as_view(), name="task_create"),

@@ -1,28 +1,28 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg" style="background-color: #4f3b78; height: 80px;">
+<nav class="navbar navbar-expand-lg" style="background-color: #272343; height: 80px;">
   <div class="container-fluid container">
     <a class="navbar-brand" href="#" style="color: white; font-weight: bold;">
       <img src="{% static 'img/app.png' %}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top" />
       ProWorking
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-    <div class="collapse navbar-collapse" id="navbarScroll">
+    <div class="collapse navbar-collapse" id="navbarScroll" style="background-color: #272343;">
       <ul class="navbar-nav me-auto my-2 mx-4 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px">
         <li class="nav-item mx-3">
-          <a class="nav-link js" href="#"><i class="fa-solid fa-house-chimney"></i> Home</a>
+          <a class="nav-link js" href="{% url "dashboard:dashboard_view" %}"><i class="fa-solid fa-house-chimney"></i> Home</a>
         </li>
         <li class="nav-item mx-3">
-          <a class="nav-link js" href="#"><i class="fa-solid fa-book"></i> Project</a>
+          <a class="nav-link js" href="{% url "main:project_list" %}"><i class="fa-solid fa-book"></i> Project</a>
         </li>
         <li class="nav-item mx-3">
-          <a class="nav-link js" href="#"><i class="fa-solid fa-user-group"></i> Group</a>
+          <a class="nav-link js" href="{% url "main:group_list" %}"><i class="fa-solid fa-user-group"></i> Group</a>
         </li>
         <li class="nav-item mx-3">
-          <a class="nav-link js" href="#"><i class="fa-solid fa-list-check"></i> Task</a>
+          <a class="nav-link js" href="{% url "main:task_list" %}"><i class="fa-solid fa-list-check"></i> Task</a>
         </li>
         <li class="nav-item dropdown mx-3 d-flex align-items-end">
           <a class="nav-link dropdown-toggle js" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user-tie"></i> User</a>
-          <ul class="dropdown-menu" style="background-color: #927fbf;">
+          <ul class="dropdown-menu my my-drop" style="background-color: #272343;">
             <li>
               <a class="dropdown-item js" href="#"><i class="fa-solid fa-gears"></i> Settings</a>
             </li>
