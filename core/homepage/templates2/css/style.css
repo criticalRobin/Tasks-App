@@ -1,4 +1,5 @@
 
+  
   svg {
     position: absolute;
     top: 50%;
@@ -6,6 +7,12 @@
     margin-top: -250px;
     margin-left: -400px;
   }
+
+  body {
+    background-image: url('../img/fondo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat; }
+
   .message-box {
     height: 200px;
     width: 380px;
