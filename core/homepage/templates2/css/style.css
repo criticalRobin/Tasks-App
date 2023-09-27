@@ -16,7 +16,7 @@
     margin-left: 50px;
     color: black;
     font-family: Roboto;
-    font-weight: 300;
+    font-weight: 450;
   }
   .message-box h1 {
     font-size: 60px;
@@ -32,11 +32,10 @@
     border-radius: 4px;
     color: #FFF;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 40px;
     transition: all 0.3s linear;
     cursor: pointer;
     text-decoration: none;
-    margin-right: 10px
   }
   .buttons-con .action-link-wrap a:hover {
     background: #5A5C6C;
