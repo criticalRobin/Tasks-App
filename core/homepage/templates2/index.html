@@ -8,7 +8,12 @@
 <link rel="stylesheet" href="./css/style.css">
 
 </head>
-<body>
+<body onclick="PlayAudio()">
+
+  <audio id="musica1" autoplay loop>
+    <source src="./musica/musica.mp3" type="audio/mpeg">
+ </audio>
+
 <!-- partial:index.partial.html -->
 <svg width="380px" height="500px" viewBox="0 0 837 1045" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
@@ -28,6 +33,13 @@
     </div>
   </div>
 </div>
+
+<script>
+  function PlayAudio(){
+      document.getElementById("musica1").play();
+  }
+</script>
+
 <!-- partial -->
 </body>
 </html>
