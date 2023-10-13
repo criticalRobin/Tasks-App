@@ -21,7 +21,7 @@ def update_project_status(sender, instance, **kwargs):
 def update_group_status(sender, instance, **kwargs):
     group = instance.group
     total_tasks = group.task_set.count()
-    full_completed_tasks = group.task_set.filter(status=True).count()
+    full_completed_tasks = group.task_set.filter(status="Completed").count()
 
     if total_tasks == full_completed_tasks:
         group.status = "Completed"

@@ -18,6 +18,13 @@ class TaskListView(ListView):
         context["title"] = "Tasks List"
         context["list_url"] = reverse_lazy("main:task_list")
         context["entity"] = "Tasks"
+        context["user"] = self.request.user
+        context["user_finished_tasks"] = Task.objects.filter(
+            user=context["user"], status="Completed"
+        )
+        context["user_unfinished_tasks"] = Task.objects.filter(
+            user=context["user"], status="Not Started"
+        )
         return context
 
 

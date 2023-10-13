@@ -1,1 +1,53 @@
 {% extends 'list.html' %}
+{% load static %}
+{% block left_content %}
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{% static 'img/noviaaaa.jpg' %}" alt="Card image cap" />
+    <div class="card-body text-center" style="color: #272343;">
+      <h5 class="card-title">User: @{{ user.username }}</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="{% url 'main:project_create' %}" class="btn" style="background-color: #ff9a3c; color: white;">Add a new Project!</a>
+    </div>
+  </div>
+{% endblock %}
+
+{% block right_content %}
+    {% for ug in user_groups %}
+        {% if forloop.counter0|divisibleby:2 %}
+            <div class="row">
+        {% endif %}
+        <div class="col-sm-6 mb-3 mt-2 mb-sm-0">
+            {% if ug.status == "Not Started" %}
+            <div class="card bg-danger" style="color: white;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ ug.name }}</h5>
+                    <p class="card-text">{{ ug.description }}</p>
+                    <a href="#" class="btn btn-warning">Add People</a>
+                    <a href="{% url "main:task_create" ug.pk %}" class="btn btn-info">Add Task</a>
+                </div>
+            </div>
+            {% elif ug.status == "In Progress" %}
+            <div class="card bg-primary" style="color: white;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ ug.name }}</h5>
+                    <p class="card-text">{{ ug.description }}</p>
+                    <a href="#" class="btn btn-warning">Add People</a>
+                    <a href="{% url "main:task_create" ug.pk %}" class="btn btn-info">Add Task</a>
+                </div>
+            </div>
+            {% else %}
+            <div class="card bg-success" style="color: white;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ ug.name }}</h5>
+                    <p class="card-text">{{ ug.description }}</p>
+                    <a href="#" class="btn btn-warning">Add People</a>
+                    <a href="{% url "main:task_create" ug.pk %}" class="btn btn-info">Add Task</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        {% if forloop.counter|divisibleby:2 or forloop.last %}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

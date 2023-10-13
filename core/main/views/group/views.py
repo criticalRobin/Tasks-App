@@ -18,6 +18,9 @@ class GroupListView(ListView):
         context["title"] = "Groups List"
         context["list_url"] = reverse_lazy("main:group_list")
         context["entity"] = "Groups"
+        context["user_groups"] = Group.objects.filter(
+            project__project_manager=self.request.user
+        )
         return context
 
 

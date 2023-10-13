@@ -1,1 +1,59 @@
 {% extends 'list.html' %}
+
+{% block left_content %}
+  <div class="top text-center" style="height: 240px;">
+    <table class="table" style="border: 3px solid #272343; background-color: white;">
+      <thead>
+        <tr>
+          <th scope="col">
+            <i class="fa-solid fa-list-ul"></i> Finished Tasks
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for ft in user_finished_tasks %}
+          <tr>
+            <th scope="row">
+              <i class="i-project fa-solid fa-diagram-project"></i> {{ ft.name }}
+            </th>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
+
+{% block right_content %}
+  <div class="top text-center" style="height: 240px;">
+    <table class="table" style="border: 3px solid #272343; background-color: white;">
+      <thead>
+        <tr>
+          <th scope="col">
+            <i class="fa-solid fa-list-ul"></i> Not Finished Tasks
+          </th>
+          <th scope="col">
+            <i class="fa-solid fa-person-circle-plus"></i> End Date
+          </th>
+          <th scope="col">
+            <i class="fa-regular fa-pen-to-square"></i> Finish Task
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for ut in user_unfinished_tasks %}
+          <tr>
+            <th scope="row">
+              <i class="i-project fa-solid fa-diagram-project"></i> {{ ut.name }}
+            </th>
+            <td>
+              <a class="btn" href="{% url 'main:group_create' ut.pk %}" style="border: 2px solid #7dd87d;"><i class="fa-solid fa-person-circle-plus" style="color: #7dd87d;"></i></a>
+            </td>
+            <td>
+              <a class="btn" href="{% url 'main:project_update' ut.pk %}" style="border: 2px solid #ffc93c;"><i class="fa-regular fa-pen-to-square" style="color: #ffc93c;"></i></a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
